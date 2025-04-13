@@ -51,7 +51,7 @@ export default function UserAnalyzer() {
 
       {isLoading && (
         <p className="mt-6 text-zinc-600">
-          Carregando dados... <LoaderCircle className="size-4 animate-spin" />
+          Carregando dados... <LoaderCircle className="size-5 animate-spin" />
         </p>
       )}
 
