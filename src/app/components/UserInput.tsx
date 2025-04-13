@@ -2,28 +2,31 @@
 
 import { useState } from 'react';
 
-type UserInputProps = {
+interface Props {
   onSearch: (username: string) => void;
-};
+}
 
-export default function UserInput({ onSearch }: UserInputProps) {
-  const [inputValue, setInputValue] = useState('');
+export default function UserInput({ onSearch }: Props) {
+  const [input, setInput] = useState('');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (inputValue.trim()) {
-      onSearch(inputValue.trim());
+    if (input.trim()) {
+      onSearch(input.trim());
     }
   };
 
   return (
     <form onSubmit={handleSubmit} className="mt-8 flex flex-col items-center gap-4">
+         <span className="select-none" aria-hidden>
+          @
+        </span>
       <input
         type="text"
         placeholder="Digite seu username"
-        value={inputValue}
-        onChange={(e) => setInputValue(e.target.value)}
-        className="border border-zinc-400 px-4 py-2 rounded w-full max-w-xs"
+        value={input}
+        onChange={(e) => setInput(e.target.value)}
+        className="px-4 py-2 rounded border border-zinc-300 text-zinc-700"
       />
       <button
         type="submit"
