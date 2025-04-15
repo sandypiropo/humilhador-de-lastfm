@@ -9,6 +9,7 @@ import { getProfileData, getTopArtists, getTopAlbums, getTopTracks } from '../..
 
 export default function UserAnalyzer() {
   const [username, setUsername] = useState('');
+  const [realName, setRealName] = useState('');
   const [userDataForAI, setUserDataForAI] = useState(''); 
   const [isLoading, setIsLoading] = useState(false); 
   const [aiResponse, setAiResponse] = useState('');  
@@ -51,13 +52,12 @@ export default function UserAnalyzer() {
           const topAlbums = await getTopAlbums(username, period, limit);
           const topTracks = await getTopTracks(username, period, limit);
 
+          const nomeReal = profile.user.realname || profile.user.name; 
+          setRealName(nomeReal);
+
           const {imageUrl, summary} = formatUserData(profile, topArtists, topAlbums, topTracks);
           setImageUrl(imageUrl)
           setUserDataForAI(summary); 
-          
-          const aiPrompt = `Assumindo que hoje é ${new Date().toLocaleString()}, seja extremamente breve, sarcástico e ácido sobre perfil no lastfm a seguir, sem piedade alguma ${formattedData}`;
-          const responseFromAI = await getAIResponse(aiPrompt);
-          setAiResponse(responseFromAI); 
 
         } catch (error) {
           console.error('Erro ao obter dados:', error);
@@ -86,8 +86,13 @@ export default function UserAnalyzer() {
       {!isLoading &&  (
         <div className="flex justify-center mt-8">
           <div className="w-full max-w-2xl bg-gray-100 p-6 rounded shadow-md">
-          <img src={imageUrl} alt="Avatar do usuário" className="mb-4 mx-auto w-32 h-32 rounded-full object-cover" />
-            <div className="p-4 bg-white rounded text-black">
+          <img 
+            src={imageUrl} 
+            alt="Avatar do usuário" 
+            className="mb-4 mx-auto w-32 h-32 rounded-full object-cover"
+          />
+          <h2 className="text-lg font-bold">{realName}</h2>
+          <div className="p-4 bg-white rounded text-black">
             <TypeAnimation
             sequence={["Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor  consectetur adipiscing elit. Sed do eiusmod tempor  consectetur adipiscing elit. Sed do eiusmod tempor incididunssssst ut aaaaaaaaaaaaaaaaaaaaaaaaaaaaassssssssssssslabore et dolore magna aliqua."]}
             speed={50}

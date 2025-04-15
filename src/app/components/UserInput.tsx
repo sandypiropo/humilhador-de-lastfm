@@ -25,15 +25,19 @@ export default function UserInput({ onSearch }: Props) {
           placeholder="Digite seu username"
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          className="px-12 py-2 rounded-l border-t border-b border-l border-zinc-300 text-zinc-700 w-full sm:w-[300px]"
+          className="px-14 py-3 rounded-l border-t border-b border-l border-zinc-300 text-zinc-700 w-full sm:w-[350px]"
         />
         <button
           type="submit"
-          className="bg-zinc-800 text-white px-6 py-2 rounded-r border-t border-b border-r border-zinc-300 hover:bg-zinc-700 transition"
+          className="text-white px-8 py-3 rounded-r border-t border-b border-r border-zinc-300 bg-black hover:brightness-100 transition"
+          style={{ transition: 'background-color 0.3s ease' }}
+          onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#F80701')}
+          onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = 'black')}
         >
           Analisar
         </button>
       </div>
     </form>
+
   );
 }

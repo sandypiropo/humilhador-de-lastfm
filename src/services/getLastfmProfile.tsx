@@ -17,6 +17,7 @@ export const getProfileData = async (username: string) => {
     const response = await axios.get(BASE_URL, {
       params: baseParams(username, 'user.getinfo')
     });
+    console.log('Perfil de usuário:', response.data.user); // Debug: Verifique a resposta completa da API
     return response.data;
   } catch (error) {
     console.error('Erro ao carregar perfil:', error);

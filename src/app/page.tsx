@@ -15,11 +15,13 @@ export default function Home() {
             width={500} 
             height={500} 
           />       
-          <h2 className="mt-2 text-2xl text-zinc-700">
-          Você nem tem tanta personalidade assim...
-          </h2>
         </div>
-          <UserAnalyzer/>
+
+        <h2 className="mt-8 mb-4 text-2xl text-zinc-700"> {/* Frase mais próxima do input */}
+          Você nem tem tanta personalidade assim...
+        </h2>
+
+        <UserAnalyzer />
         <div className="mt-16">
         </div>
       </main>
