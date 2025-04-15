@@ -51,8 +51,9 @@ export default function UserAnalyzer() {
           const topAlbums = await getTopAlbums(username, period, limit);
           const topTracks = await getTopTracks(username, period, limit);
 
-          const formattedData = formatUserData(profile, topArtists, topAlbums, topTracks);
-          setUserDataForAI(formattedData); 
+          const {imageUrl, summary} = formatUserData(profile, topArtists, topAlbums, topTracks);
+          setImageUrl(imageUrl)
+          setUserDataForAI(summary); 
           
           const aiPrompt = `Assumindo que hoje é ${new Date().toLocaleString()}, seja extremamente breve, sarcástico e ácido sobre perfil no lastfm a seguir, sem piedade alguma ${formattedData}`;
           const responseFromAI = await getAIResponse(aiPrompt);
@@ -80,17 +81,15 @@ export default function UserAnalyzer() {
         </p>
       )}
 
-      {!isLoading && (
+{/*&& airesponse*/} 
+
+      {!isLoading &&  (
         <div className="flex justify-center mt-8">
           <div className="w-full max-w-2xl bg-gray-100 p-6 rounded shadow-md">
-          <img 
-              src={imageUrl}
-              alt="Avatar do usuário"
-              className="mb-4 mx-auto w-32 h-32 rounded-full object-cover"
-            />      
+          <img src={imageUrl} alt="Avatar do usuário" className="mb-4 mx-auto w-32 h-32 rounded-full object-cover" />
             <div className="p-4 bg-white rounded text-black">
             <TypeAnimation
-            sequence={[aiResponse]}
+            sequence={["Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor  consectetur adipiscing elit. Sed do eiusmod tempor  consectetur adipiscing elit. Sed do eiusmod tempor incididunssssst ut aaaaaaaaaaaaaaaaaaaaaaaaaaaaassssssssssssslabore et dolore magna aliqua."]}
             speed={50}
             wrapper="p"
             repeat={0}

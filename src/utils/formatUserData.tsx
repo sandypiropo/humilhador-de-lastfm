@@ -1,7 +1,9 @@
 export const formatUserData = (profileData: any, artists: any[], albums: any[], tracks: any[]) => {
-  const imageUrl = profileData.user.image && Array.isArray(profileData.user.image) ?
-  profileData.user.image.find((img: any) => img.size === 'extralarge')?.['#text'] : undefined;
-  
+
+  const imageUrl = profileData.user.image && Array.isArray(profileData.user.image) 
+    ? profileData.user.image.find((img: any) => img.size === 'extralarge')?.['#text'] 
+    : undefined;
+
   const profileSummary = `
       Nome do usuário: ${profileData.user.name}
       Nome real: ${profileData.user.realname}
@@ -22,7 +24,9 @@ export const formatUserData = (profileData: any, artists: any[], albums: any[], 
       .map((track: any, index: number) => `${index + 1}. ${track.name} (Artista: ${track.artist.name}) - ${track.playcount} plays`)
       .join('\n'); 
   
-    return `
+  return {
+    imageUrl,  // <- retorna a URL separada
+    summary: `
       Avatar:
       ${imageUrl}
 
@@ -37,6 +41,6 @@ export const formatUserData = (profileData: any, artists: any[], albums: any[], 
   
       Faixas:
       ${topTracksSummary}
-    `;
+    `
   };
-  
+}
