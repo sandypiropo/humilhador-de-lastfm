@@ -24,9 +24,6 @@ export const getProfileData = async (username: string) => {
   }
 };
 
-//mesma coisa de
-//https://ws.audioscrobbler.com/2.0/?method=user.gettopartists&user=USERNAME&api_key=API_KEY&format=json&period=overall&limit=10&page=1
-
 export const getTopArtists = async (
   username: string,
   period: string = 'overall',

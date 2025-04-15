@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import humilhadorlastfm from '../app/logo.png';
+import humilhadorlastfm from '../app/logo-guigs.png';
 import UserAnalyzer from './components/UserAnalyzer'
 
 export default function Home() {

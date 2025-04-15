@@ -13,8 +13,10 @@
     "dotenv": "^16.5.0",
     "lucide-react": "^0.488.0",
     "next": "15.3.0",
+    "openai": "^4.94.0",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "react-type-animation": "^3.2.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
