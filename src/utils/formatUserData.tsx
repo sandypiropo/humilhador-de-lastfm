@@ -36,7 +36,7 @@ interface Track {
 export const formatUserData = (profileData: { user: UserProfile }, artists: Artist[], albums: Album[], tracks: Track[]) => {
 
   const imageUrl = profileData.user.image && Array.isArray(profileData.user.image) 
-    ? profileData.user.image.find((img: any) => img.size === 'extralarge')?.['#text'] 
+    ? profileData.user.image.find((img: Image) => img.size === 'extralarge')?.['#text'] 
     : undefined;
 
   const profileSummary = `
@@ -48,15 +48,15 @@ export const formatUserData = (profileData: { user: UserProfile }, artists: Arti
     `;
   
     const topArtistsSummary = artists
-      .map((artist: any, index: number) => `${index + 1}. ${artist.name} - ${artist.playcount} scrobbles`)
+      .map((artist: Artist, index: number) => `${index + 1}. ${artist.name} - ${artist.playcount} scrobbles`)
       .join('\n'); 
   
     const topAlbumsSummary = albums
-      .map((album: any, index: number) => `${index + 1}. ${album.name} (Artista: ${album.artist.name}) - ${album.playcount} scrobbles`)
+      .map((album: Album, index: number) => `${index + 1}. ${album.name} (Artista: ${album.artist.name}) - ${album.playcount} scrobbles`)
       .join('\n'); 
   
     const topTracksSummary = tracks
-      .map((track: any, index: number) => `${index + 1}. ${track.name} (Artista: ${track.artist.name}) - ${track.playcount} scrobbles`)
+      .map((track: Track, index: number) => `${index + 1}. ${track.name} (Artista: ${track.artist.name}) - ${track.playcount} scrobbles`)
       .join('\n'); 
   
   return {
