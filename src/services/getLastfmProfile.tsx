@@ -1,6 +1,9 @@
 import axios from 'axios';
+import * as dotenv from 'dotenv';
 
-require('dotenv').config();  
+dotenv.config();
+
+
 const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
 const BASE_URL = 'https://ws.audioscrobbler.com/2.0/';
 
@@ -17,7 +20,7 @@ export const getProfileData = async (username: string) => {
     const response = await axios.get(BASE_URL, {
       params: baseParams(username, 'user.getinfo')
     });
-    console.log('Perfil de usuário:', response.data.user); // Debug: Verifique a resposta completa da API
+    console.log('Perfil de usuário:', response.data.user);  
     return response.data;
   } catch (error) {
     console.error('Erro ao carregar perfil:', error);
