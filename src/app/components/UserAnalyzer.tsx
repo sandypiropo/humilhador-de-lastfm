@@ -64,6 +64,8 @@ export default function UserAnalyzer() {
           setRealName(nomeReal);
 
           const { imageUrl, summary } = formatUserData(profile, topArtists, topAlbums, topTracks);
+          console.log('Image URL:', imageUrl); // Verifique se a URL está sendo gerada corretamente
+
           setImageUrl(imageUrl);
           setUserDataForAI(summary);
 
@@ -145,6 +147,8 @@ export default function UserAnalyzer() {
         src={imageUrl ?? '/images/default-avatar.png'}
         alt="Avatar do usuário"
         className="mb-4 mx-auto w-32 h-32 rounded-full object-cover"
+        width={128}  
+        height={128} 
       />
       <h2 className="text-lg font-bold text-center">{realName}</h2>
 
