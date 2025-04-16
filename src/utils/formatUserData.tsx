@@ -1,4 +1,39 @@
-export const formatUserData = (profileData: any, artists: any[], albums: any[], tracks: any[]) => {
+interface Image {
+  size: string;
+  '#text': string;
+}
+
+interface UserProfile {
+  name: string;
+  realname: string;
+  playcount: number;
+  album_count: number;
+  artist_count: number;
+  image: Image[];
+}
+
+interface Artist {
+  name: string;
+  playcount: number;
+}
+
+interface Album {
+  name: string;
+  artist: {
+    name: string;
+  };
+  playcount: number;
+}
+
+interface Track {
+  name: string;
+  artist: {
+    name: string;
+  };
+  playcount: number;
+}
+
+export const formatUserData = (profileData: { user: UserProfile }, artists: Artist[], albums: Album[], tracks: Track[]) => {
 
   const imageUrl = profileData.user.image && Array.isArray(profileData.user.image) 
     ? profileData.user.image.find((img: any) => img.size === 'extralarge')?.['#text'] 
