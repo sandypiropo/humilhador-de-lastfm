@@ -7,21 +7,21 @@ export const formatUserData = (profileData: any, artists: any[], albums: any[], 
   const profileSummary = `
       Nome do usuário: ${profileData.user.name}
       Nome real: ${profileData.user.realname}
-      Total de plays: ${profileData.user.playcount}
+      Total de scrobbles: ${profileData.user.playcount}
       Número de álbuns: ${profileData.user.album_count}
       Número de artistas: ${profileData.user.artist_count}
     `;
   
     const topArtistsSummary = artists
-      .map((artist: any, index: number) => `${index + 1}. ${artist.name} - ${artist.playcount} plays`)
+      .map((artist: any, index: number) => `${index + 1}. ${artist.name} - ${artist.playcount} scrobbles`)
       .join('\n'); 
   
     const topAlbumsSummary = albums
-      .map((album: any, index: number) => `${index + 1}. ${album.name} (Artista: ${album.artist.name}) - ${album.playcount} plays`)
+      .map((album: any, index: number) => `${index + 1}. ${album.name} (Artista: ${album.artist.name}) - ${album.playcount} scrobbles`)
       .join('\n'); 
   
     const topTracksSummary = tracks
-      .map((track: any, index: number) => `${index + 1}. ${track.name} (Artista: ${track.artist.name}) - ${track.playcount} plays`)
+      .map((track: any, index: number) => `${index + 1}. ${track.name} (Artista: ${track.artist.name}) - ${track.playcount} scrobbles`)
       .join('\n'); 
   
   return {

@@ -1,6 +1,8 @@
+'use client';
+
 import Image from 'next/image';
 import humilhadorlastfm from '../app/logo-guigs.png';
-import UserAnalyzer from './components/UserAnalyzer'
+import UserAnalyzer from './components/UserAnalyzer';
 import { Github, HeartIcon } from 'lucide-react';
 
 export default function Home() {
@@ -17,39 +19,38 @@ export default function Home() {
           />       
         </div>
 
-        <h2 className="mt-8 mb-4 text-2xl text-zinc-700"> {/* Frase mais próxima do input */}
+        <h2 className="mt-8 mb-4 text-2xl text-zinc-700">
           Você nem tem tanta personalidade assim...
         </h2>
 
         <UserAnalyzer />
-        <div className="mt-10">
-        </div>
       </main>
+
       <footer className="flex flex-col sm:flex-row flex-wrap items-center justify-center p-6 text-zinc-500 gap-3 sm:gap-6">
-          <a
-            className="flex items-center gap-2 text-lg font-bold hover:underline hover:underline-offset-4"
-            href="https://vercel.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Apoiar projeto
-            <HeartIcon className="size-5" />
-          </a>
+        <a
+          href="https://livepix.gg/sandypiropo" // Redireciona para o LivePix
+          className="flex items-center gap-2 text-lg font-bold hover:underline hover:underline-offset-4"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Apoiar projeto
+          <HeartIcon className="size-5" />
+        </a>
 
-          <a
-            className="flex items-center gap-2 text-lg font-bold hover:underline hover:underline-offset-4"
-            href="https://github.com/sandypiropo/humilhador-de-lastfm"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Repositório no GitHub
-            <Github className="size-5" />
-          </a>
-          <p className="text-lg text-zinc-500">
-            Criado por Sandy Piropo
-          </p>
-        </footer>
+        <a
+          className="flex items-center gap-2 text-lg font-bold hover:underline hover:underline-offset-4"
+          href="https://github.com/sandypiropo/humilhador-de-lastfm"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Repositório no GitHub
+          <Github className="size-5" />
+        </a>
 
+        <p className="text-lg text-zinc-500">
+          Criado por Sandy Piropo
+        </p>
+      </footer>
 
     </div>
   );

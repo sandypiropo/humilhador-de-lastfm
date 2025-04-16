@@ -19,11 +19,34 @@ export default function UserAnalyzer() {
   const [imageUrl, setImageUrl] = useState<string | undefined>(undefined);
   const [aiResponse, setAiResponse] = useState('');
 
+  
   const cardRef = useRef<HTMLDivElement>(null); 
   const downloadRef = useRef<HTMLButtonElement>(null); 
 
   const period = 'overall';
   const limit = 10;
+
+  const getAIResponse = async (prompt: string) => {
+    try {
+      const response = await fetch('/api/gptChatApi', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ prompt }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Falha na resposta da API');
+      }
+
+      const data = await response.json();
+      return data.choices?.[0]?.message?.content ?? 'Sem resposta.';
+    } catch (error) {
+      console.error('Erro ao chamar a IA:', error);
+      return 'Erro ao se comunicar com a IA.';
+    }
+  };
 
   useEffect(() => {
     if (username) {
@@ -43,6 +66,11 @@ export default function UserAnalyzer() {
           setImageUrl(imageUrl);
           setUserDataForAI(summary);
 
+          const aiPrompt = `Assumindo que hoje é ${new Date().toLocaleString()} e o lastfm apenas contabiliza scrobbles, seja extremamente breve, cruel, sarcástico e ácido sobre o perfil no lastfm a seguir, sem piedade alguma (Responda em no máximo 600 caracteres.)${summary}`;
+          const responseFromAI = await getAIResponse(aiPrompt);
+          setAiResponse(responseFromAI); 
+
+
         } catch (error) {
           console.error('Erro ao obter dados:', error);
         } finally {
@@ -57,7 +85,7 @@ export default function UserAnalyzer() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsDownloadReady(true);
-    }, 20000);
+    }, 25000);
 
     return () => clearTimeout(timer);
   }, []);
@@ -85,9 +113,9 @@ export default function UserAnalyzer() {
   useEffect(() => {
     if (!isLoading && userDataForAI) {
       const showToastTimer = setTimeout(() => 
-        setShowToast(true), 20000); 
+        setShowToast(true), 25000); 
       const hideToastTimer = setTimeout(() => 
-        setShowToast(false), 70000); 
+        setShowToast(false), 80000); 
   
       return () => {
         clearTimeout(showToastTimer);
@@ -110,7 +138,6 @@ export default function UserAnalyzer() {
 
   {!isLoading && username && (
     <div className="flex justify-center mt-8 px-4 max-w-full overflow-visible">
-      {/* Card que será capturado */}
       <div ref={cardRef} className="w-full max-w-2xl bg-gray-100 p-4 sm:p-6 rounded shadow-md relative">
       <img
         crossOrigin="anonymous"
@@ -123,9 +150,7 @@ export default function UserAnalyzer() {
       <div className="p-4 bg-white rounded text-black mt-4">
         <TypeAnimation
           key={username}
-          sequence={[
-            "Texto gerado aqui... Lorem ipsum dolor orem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua, orem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua orem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua orem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua"
-          ]}
+          sequence={[aiResponse]}
           speed={80}
           wrapper="p"
           repeat={0}
