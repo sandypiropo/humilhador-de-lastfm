@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import humilhadorlastfm from '../app/logo-guigs.png';
+import humilhadorlastfm from '../../public/images/logo-guigs.png';
 import UserAnalyzer from './components/UserAnalyzer';
 import { Github, HeartIcon } from 'lucide-react';
 

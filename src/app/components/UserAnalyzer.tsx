@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { useState, useEffect, useRef } from 'react';
 import domtoimage from 'dom-to-image';
 import { TypeAnimation } from 'react-type-animation';
@@ -139,9 +140,9 @@ export default function UserAnalyzer() {
   {!isLoading && username && (
     <div className="flex justify-center mt-8 px-4 max-w-full overflow-visible">
       <div ref={cardRef} className="w-full max-w-2xl bg-gray-100 p-4 sm:p-6 rounded shadow-md relative">
-      <img
+      <Image
         crossOrigin="anonymous"
-        src={imageUrl}
+        src={imageUrl ?? '/images/default-avatar.png'}
         alt="Avatar do usuário"
         className="mb-4 mx-auto w-32 h-32 rounded-full object-cover"
       />
