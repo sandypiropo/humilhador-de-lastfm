@@ -60,11 +60,17 @@ export default function UserAnalyzer() {
           const topAlbums = await getTopAlbums(username, period, limit);
           const topTracks = await getTopTracks(username, period, limit);
 
+          if (!profile?.user) {
+            setAiResponse(`O usuário "${username}" não foi encontrado. Insira um user válido e tente novamente`);
+            setIsLoading(false);
+            return;
+          }
+
           const nomeReal = profile.user.realname || profile.user.name;
           setRealName(nomeReal);
 
           const { imageUrl, summary } = formatUserData(profile, topArtists, topAlbums, topTracks);
-          console.log('Image URL:', imageUrl); // Verifique se a URL está sendo gerada corretamente
+          console.log('Image URL:', imageUrl);  
 
           setImageUrl(imageUrl);
           setUserDataForAI(summary);
