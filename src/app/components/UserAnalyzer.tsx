@@ -148,14 +148,15 @@ export default function UserAnalyzer() {
   {!isLoading && username && (
     <div className="flex justify-center mt-8 px-4 max-w-full overflow-visible">
       <div ref={cardRef} className="w-full max-w-2xl bg-gray-100 p-4 sm:p-6 rounded shadow-md relative">
-      <Image
+      <img
         crossOrigin="anonymous"
         src={imageUrl ?? '/images/default-avatar.png'}
         alt="Avatar do usuário"
         className="mb-4 mx-auto w-32 h-32 rounded-full object-cover"
-        width={128}  
-        height={128} 
+        width={128}
+        height={128}
       />
+
       <h2 className="text-lg font-bold text-center">{realName}</h2>
 
       <div className="p-4 bg-white rounded text-black mt-4">
